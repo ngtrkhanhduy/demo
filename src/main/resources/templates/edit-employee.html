@@ -2,14 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Employee</title>
+    <title>Edit Employee</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css"> <!-- Link to CSS in /static/css/ -->
 </head>
 <body>
 <div class="container">
-    <h1>Create Employee</h1>
-    <form th:action="@{/employees/create}" th:object="${employee}" method="post">
+    <h1>Edit Employee</h1>
+    <form th:action="@{/employees/edit/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+        <!-- Hidden input to simulate PUT method -->
+        <input type="hidden" name="_method" value="put"/>
+
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter employee's name" required>
@@ -18,7 +21,7 @@
             <label for="role">Role</label>
             <input type="text" id="role" th:field="*{role}" class="form-control" placeholder="Enter employee's role" required>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-success">Update</button>
         <a href="/employees" class="btn btn-secondary">Cancel</a>
     </form>
 </div>

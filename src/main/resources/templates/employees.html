@@ -16,6 +16,8 @@
             <th>ID</th>
             <th>Name</th>
             <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +25,15 @@
             <td th:text="${employee.id}"></td>
             <td th:text="${employee.name}"></td>
             <td th:text="${employee.role}"></td>
+            <td>
+                <a th:href="@{/employees/edit/{id}(id=${employee.id})}" class="btn btn-warning">Edit</a>
+            </td>
+            <td>
+                <form th:action="@{/employees/delete/{id}(id=${employee.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
